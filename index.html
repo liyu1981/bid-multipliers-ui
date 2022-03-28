@@ -1,0 +1,359 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Bid Multipliers [Alpha UI]</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
+          integrity="sha256-p6xU9YulB7E2Ic62/PX+h59ayb3PBJ0WFTEQxq0EjHw=" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#android-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#android-input").val(ui.values[0]);
+                }
+            });
+            $("#android-input").val($("#android-range").slider("values", 0));
+
+            $("#ios-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#ios-input").val(ui.values[0]);
+                }
+            });
+            $("#ios-input").val($("#ios-range").slider("values", 0));
+
+            $("#os-default-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#os-default-input").val(ui.values[0]);
+                }
+            });
+            $("#os-default-input").val($("#os-default-range").slider("values", 0));
+
+            $("#gender-male-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#gender-male-input").val(ui.values[0]);
+                }
+            });
+            $("#gender-male-input").val($("#gender-male-range").slider("values", 0));
+
+            $("#gender-female-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#gender-female-input").val(ui.values[0]);
+                }
+            });
+            $("#gender-female-input").val($("#gender-female-range").slider("values", 0));
+
+
+            $("#gender-default-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#gender-default-input").val(ui.values[0]);
+                }
+            });
+            $("#gender-default-input").val($("#gender-default-range").slider("values", 0))
+
+            $("#age-one-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#age-one-input").val(ui.values[0]);
+                }
+            });
+            $("#age-one-input").val($("#age-one-range").slider("values", 0));
+
+            $("#age-two-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#age-two-input").val(ui.values[0]);
+                }
+            });
+            $("#age-two-input").val($("#age-two-range").slider("values", 0));
+
+            $("#age-default-range").slider({
+                range: false,
+                min: 0.09,
+                max: 1.0,
+                step: .01,
+                values: [1.0],
+                slide: function (event, ui) {
+                    $("#age-default-input").val(ui.values[0]);
+                }
+            });
+            $("#age-default-input").val($("#age-default-range").slider("values", 0));
+        });
+    </script>
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '624875111674693');
+        fbq('track', 'PageView');
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 2rem; padding-bottom: 0.5rem;">[ALPHA-UI-v0.2] Bid Multiplier Tool</h1>
+    <form>
+
+        <div class="form-group">
+            <label for="ad-set-id-input">Ad Set ID</label>
+            <input type="text" class="form-control" id="ad-set-id-input" aria-describedby="ad-set-id-input-help"
+                   placeholder="">
+            <small id="ad-set-id-input-help" class="form-text text-muted">
+                Ad set must be using conversion optimization.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="access-token-input">Access Token</label>
+            <input type="text" class="form-control" id="access-token-input" aria-describedby="access-token-input-help"
+                   placeholder="">
+            <small id="access-token-input-help" class="form-text text-muted">
+                See instructions for obtaining an access token.
+            </small>
+        </div>
+
+        <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Impression Device OS</h1>
+
+        <div class="form-group">
+            <p>
+                <label for="ios-input" aria-describedby="android-input-help">Android:&nbsp;</label>
+                <input type="text" id="android-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="android-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <label for="ios-input" aria-describedby="ios-input-help">iOS:&nbsp;</label>
+                <input type="text" id="ios-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="ios-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <label for="os-default-input" aria-describedby="os-default-help">Default:&nbsp;</label>
+                <input type="text" id="os-default-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="os-default-range"></div>
+        </div>
+
+
+        <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Gender</h1>
+
+        <div class="form-group">
+            <p>
+                <label for="gender-male-input" aria-describedby="gender-male-help">Male:&nbsp;</label>
+                <input type="text" id="gender-male-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="gender-male-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <label for="gender-female-input" aria-describedby="gender-female-help">Female:&nbsp;</label>
+                <input type="text" id="gender-female-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="gender-female-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <label for="gender-default-input" aria-describedby="gender-default-help">Default:&nbsp;</label>
+                <input type="text" id="gender-default-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="gender-default-range"></div>
+        </div>
+
+        <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Age</h1>
+
+        <div class="form-group">
+            <p>
+                <input type="number" value="18" id="age-one-start"> to <input type="number" value="25" id="age-one-end">:
+                <input type="text" id="age-one-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="age-one-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <input type="number" value="30" id="age-two-start"> to <input type="number" value="35" id="age-two-end">:
+                <input type="text" id="age-two-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="age-two-range"></div>
+        </div>
+
+        <div class="form-group">
+            <p>
+                <label for="age-default-input" aria-describedby="age-default-help">Default:&nbsp;</label>
+                <input type="text" id="age-default-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div id="age-default-range"></div>
+        </div>
+
+        <button type="button" id="submit-button" class="btn btn-primary">Submit</button>
+        <br/>
+        <br/>
+
+        <div id="alert-text-box" class="alert alert-success alert-dismissible fade show" role="alert"
+             style="display: none;">
+            <span id="alert-text"></span>
+            <button type="button" class="close" onclick="$('#alert-text-box').hide();">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script>
+    $('#submit-button').click(function () {
+        $('#alert-text-box').hide();
+
+        let adSetId = $('#ad-set-id-input').val().trim();
+        let accessToken = $('#access-token-input').val().trim();
+
+        let androidBidMod = $('#android-range').slider("values", 0);
+        let iOSBidMod = $('#ios-range').slider("values", 0);
+        let osDefaultBidMod = $('#os-default-range').slider("values", 0);
+
+        let maleBidMod = $('#gender-male-range').slider("values", 0);
+        let femaleBidMod = $('#gender-female-range').slider("values", 0);
+        let genderDefaultBidMod = $('#gender-default-range').slider("values", 0);
+
+        let ageOneBidMod = $('#age-one-range').slider("values", 0);
+        let ageTwoBidMod = $('#age-two-range').slider("values", 0);
+        let ageDefaultBidMod = $('#age-default-range').slider("values", 0);
+
+
+        if (adSetId === '' || accessToken === '') {
+            sendAlert('Please complete all fields', true);
+            return;
+        }
+        if (!/^\d+$/.test(adSetId)) {
+            sendAlert('Ad Set ID must be numeric', true);
+            return;
+        }
+        let ageOne = $('#age-one-start').val() + '-' + $('#age-one-end').val();
+        let ageTwo = $('#age-two-start').val() + '-' + $('#age-two-end').val();
+
+        let ageGroup = {};
+        ageGroup[ageOne] = ageOneBidMod;
+        ageGroup[ageTwo] = ageTwoBidMod;
+        ageGroup["default"] = ageDefaultBidMod;
+
+        let data = {
+            'access_token': accessToken,
+            'bid_adjustments': {
+                'user_groups': {
+                    "user_os": {
+                        "Android": androidBidMod,
+                        "iOS": iOSBidMod,
+                        "default": osDefaultBidMod
+                    },
+                    "gender": {
+                        "male": maleBidMod,
+                        "female": femaleBidMod,
+                        "default": genderDefaultBidMod
+                    },
+                    "age": ageGroup
+                }
+            }
+        };
+        console.log(data);
+
+        var xhr = $.ajax({
+            url: "https://graph.facebook.com/v12.0/" + adSetId,
+            type: "POST",
+            data: data,
+            success: function (res) {
+                console.log(res);
+                fbq('track', 'BidModApplied');
+                sendAlert('Success!', false);
+            },
+            error: function (res) {
+                let errorText = res.responseJSON.error.message + ' fb_traceid: ' + res.responseJSON.error.fbtrace_id;
+                fbq('track', 'LALFailure');
+                sendAlert(errorText, true);
+            }
+        });
+
+        console.log(xhr);
+    });
+
+    function sendAlert(text, isError) {
+        let $alert = $('#alert-text-box');
+        if (isError) {
+            $alert.removeClass('alert-success');
+            $alert.addClass('alert-danger');
+        } else {
+            $alert.removeClass('alert-danger');
+            $alert.addClass('alert-success');
+        }
+        $('#alert-text').text(text);
+        $alert.show();
+    }
+
+</script>
+</body>
+</html>
