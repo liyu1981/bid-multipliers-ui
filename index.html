@@ -18,7 +18,7 @@
             border: 1px solid #ccc;
             padding: 8px 28px;
             border-radius: 18px;
-            margin-bottom: 28px;            
+            margin-bottom: 28px;
         }
         .setup-group input[type="checkbox"] {
             position: absolute;
@@ -28,6 +28,14 @@
         }
         .setup-group-disabled {
             opacity: 0.5;
+        }
+        .slider-value { 
+            border:0; 
+            color:#f6931f; 
+            font-weight:bold;
+        }
+        .country-entry {
+            margin: 28px 0px;
         }
     </style>
     <script>
@@ -191,7 +199,7 @@
         <div class="setup-group setup-group-disabled">
             <input type="checkbox" id="device-checkbox" />
             <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Impression Device OS</h1>
-    
+
             <div class="form-group">
                 <p>
                     <label for="ios-input" aria-describedby="android-input-help">Android:&nbsp;</label>
@@ -199,7 +207,7 @@
                 </p>
                 <div id="android-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <label for="ios-input" aria-describedby="ios-input-help">iOS:&nbsp;</label>
@@ -207,20 +215,20 @@
                 </p>
                 <div id="ios-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <label for="os-default-input" aria-describedby="os-default-help">Default:&nbsp;</label>
                     <input type="text" id="os-default-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
                 </p>
                 <div id="os-default-range"></div>
-            </div>    
+            </div>
         </div>
 
         <div class="setup-group setup-group-disabled">
             <input type="checkbox" id="gender-checkbox" />
             <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Gender</h1>
-    
+
             <div class="form-group">
                 <p>
                     <label for="gender-male-input" aria-describedby="gender-male-help">Male:&nbsp;</label>
@@ -228,7 +236,7 @@
                 </p>
                 <div id="gender-male-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <label for="gender-female-input" aria-describedby="gender-female-help">Female:&nbsp;</label>
@@ -236,7 +244,7 @@
                 </p>
                 <div id="gender-female-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <label for="gender-default-input" aria-describedby="gender-default-help">Default:&nbsp;</label>
@@ -249,7 +257,7 @@
         <div class="setup-group setup-group-disabled">
             <input type="checkbox" id="age-checkbox" />
             <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Age</h1>
-    
+
             <div class="form-group">
                 <p>
                     <input type="number" value="18" id="age-one-start"> to <input type="number" value="25" id="age-one-end">:
@@ -257,7 +265,7 @@
                 </p>
                 <div id="age-one-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <input type="number" value="30" id="age-two-start"> to <input type="number" value="35" id="age-two-end">:
@@ -265,14 +273,23 @@
                 </p>
                 <div id="age-two-range"></div>
             </div>
-    
+
             <div class="form-group">
                 <p>
                     <label for="age-default-input" aria-describedby="age-default-help">Default:&nbsp;</label>
                     <input type="text" id="age-default-input" readonly style="border:0; color:#f6931f; font-weight:bold;">
                 </p>
                 <div id="age-default-range"></div>
-            </div>    
+            </div>
+        </div>
+
+        <div class="setup-group setup-group-disabled">
+            <input type="checkbox" id="country-checkbox" />
+            <h5 style="padding-top: 2rem; padding-bottom: 0.5rem;">Country</h1>
+
+            <div class="form-group">
+                <button type="button" id="add-country-button">+ Country</button>
+            </div>
         </div>
 
         <button type="button" id="submit-button" class="btn btn-primary">Submit</button>
@@ -293,7 +310,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script>
-    $('.setup-group input[type="checkbox"]').click(function (ev) {
+    $('.setup-group input[type="checkbox"]').click((ev) => {
         const el = $($(ev.target).parent());
         if(el.hasClass('setup-group-disabled')) {
             el.removeClass('setup-group-disabled');
@@ -302,27 +319,53 @@
         }
     });
 
+    $('#add-country-button').click((ev) => {
+        const el = $($(ev.target)).parent();
+        const countryId = el.children().length;
+        el.append(`
+            <div class="country-entry" id="country-entry-${countryId}">
+                <p><b>Country Entry ${countryId}</b></p>
+                <p>Country code: <input id="code" type="text" /> (fill Alpha-2 code list <a target="_blank" href="https://www.iban.com/country-codes">here</a>)</p>
+                <p>Multiplier:
+                    <input type="text" readonly id="multiplier" class="slider-value" value="1"/>
+                    <div class="country-range" id="country-entry-${countryId}-range"></div>
+                </p>
+            </div>
+        `);
+        $(`#country-entry-${countryId}-range`).slider({
+            range: false,
+            min: 0.09,
+            max: 1.0,
+            step: .01,
+            values: [1.0],
+            slide: function (event, ui) {
+                $(`#country-entry-${countryId} .slider-value`).val(ui.values[0]);
+            }
+        });
+    });
+
     $('#submit-button').click(function () {
         $('#alert-text-box').hide();
 
         let adSetId = $('#ad-set-id-input').val().trim();
         let accessToken = $('#access-token-input').val().trim();
 
-        let deviceChecked = $('#device-checkbox').val();
+        let deviceChecked = $('#device-checkbox').is(':checked');
         let androidBidMod = $('#android-range').slider("values", 0);
         let iOSBidMod = $('#ios-range').slider("values", 0);
         let osDefaultBidMod = $('#os-default-range').slider("values", 0);
 
-        let genderChecked = $('#gender-checkbox').val();
+        let genderChecked = $('#gender-checkbox').is(':checked');
         let maleBidMod = $('#gender-male-range').slider("values", 0);
         let femaleBidMod = $('#gender-female-range').slider("values", 0);
         let genderDefaultBidMod = $('#gender-default-range').slider("values", 0);
 
-        let ageChecked = $('#age-checkbox').val();
+        let ageChecked = $('#age-checkbox').is(':checked');
         let ageOneBidMod = $('#age-one-range').slider("values", 0);
         let ageTwoBidMod = $('#age-two-range').slider("values", 0);
         let ageDefaultBidMod = $('#age-default-range').slider("values", 0);
 
+        let countryChecked = $('#country-checkbox').is(':checked');
 
         if (adSetId === '' || accessToken === '') {
             sendAlert('Please complete all fields', true);
@@ -362,7 +405,18 @@
             ageGroup["default"] = ageDefaultBidMod;
             data['bid_adjustments']['user_groups']['age'] = ageGroup;
         }
-        console.log(data);
+        if (countryChecked) {
+            let countries = {};
+            $('.country-entry').each((index, countryEl) => {
+                const code = $(countryEl).find('#code').val().toUpperCase();
+                const value = parseFloat($(countryEl).find('#multiplier').val());
+                countries[code] = value;
+            });
+            data['bid_adjustments']['user_groups']['home_location'] = {
+                "countries": countries,
+            };
+        }
+        console.log('data is', data);
 
         var xhr = $.ajax({
             url: "https://graph.facebook.com/v12.0/" + adSetId,
