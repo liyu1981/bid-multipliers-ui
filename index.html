@@ -29,9 +29,9 @@
         .setup-group-disabled {
             opacity: 0.5;
         }
-        .slider-value { 
-            border:0; 
-            color:#f6931f; 
+        .slider-value {
+            border:0;
+            color:#f6931f;
             font-weight:bold;
         }
         .country-entry {
@@ -419,7 +419,7 @@
         console.log('data is', data);
 
         var xhr = $.ajax({
-            url: "https://graph.facebook.com/v12.0/" + adSetId,
+            url: "https://graph.facebook.com/v13.0/" + adSetId,
             type: "POST",
             data: data,
             success: function (res) {
