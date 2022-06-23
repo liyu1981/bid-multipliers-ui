@@ -565,15 +565,26 @@ function UserDeviceControl({ state, dispatch, config }) {
 
   const children = [];
   Object.keys(setting).forEach((key) => {
-    children.push(
-      <NestableControl key={key} state={state} dispatch={dispatch} currentPath={`${config.currentPath}.${key}`}>
+    if (key === 'default') {
+      children.push(
         <DeviceSliderControl
+          key={key}
           state={state}
           dispatch={dispatch}
           config={{ deviceKey: key, currentParentPath: config.currentPath }}
         />
-      </NestableControl>
-    );
+      );
+    } else {
+      children.push(
+        <NestableControl key={key} state={state} dispatch={dispatch} currentPath={`${config.currentPath}.${key}`}>
+          <DeviceSliderControl
+            state={state}
+            dispatch={dispatch}
+            config={{ deviceKey: key, currentParentPath: config.currentPath, usableDevices }}
+          />
+        </NestableControl>
+      );
+    }
   });
 
   return (
