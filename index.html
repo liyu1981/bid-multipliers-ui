@@ -9,21 +9,25 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/immer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.3.min.css">-->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
       crossorigin="anonymous"
-    />
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
       integrity="sha256-p6xU9YulB7E2Ic62/PX+h59ayb3PBJ0WFTEQxq0EjHw="
       crossorigin="anonymous"
     />
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
     <style>
       .title {
         padding-top: 2rem;
@@ -77,6 +81,29 @@
       .setup-payload-preview pre {
         border: 1px solid #ccc;
         padding: 18px;
+      }
+      .nest-button {
+        float: left;
+        margin-top: 5px;
+        transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+      .nest-button:hover {
+        box-shadow: 0px 0px 8px -3px #999;
+      }
+      .nest-child {
+        margin-left: 42px;
+      }
+      .nest-menu {
+        display: inline-block;
+        position: absolute;
+        top: 4px;
+        z-index: 100;
+        border-radius: 4px;
+        left: 0px;
+        box-shadow: 0px 0px 8px 0px #999;
+      }
+      .nest-container {
+        position: relative;
       }
     </style>
     <script>
