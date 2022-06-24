@@ -722,6 +722,8 @@ function GraphAPISubmit({ state, dispatch }) {
         <div className="setup-payload-preview">
           <p>Payload Preview:</p>
           <code>
+            <pre>destination API endpoint: {'https://graph.facebook.com/v13.0/' + state.adSetId}</pre>
+            <pre>access_token={state.accessToken}</pre>
             <pre>bid_adjustments={JSON.stringify({ user_group: toPayloadJSON(state.settings) }, null, 2)}</pre>
           </code>
           <button type="button" id="submit-button" className="btn btn-primary" onClick={callGraphAPI}>
