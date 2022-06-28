@@ -420,18 +420,18 @@ function UserOSControl({ state, dispatch, config }) {
   return (
     <div className="setup-group">
       <h5 className="setup-group-title">{config.title}</h5>
-      <NestableControl state={state} dispatch={dispatch} currentPath={`${config.currentPath}.android`}>
+      <NestableControl state={state} dispatch={dispatch} currentPath={`${config.currentPath}.Android`}>
         <SliderControl
           state={state}
           dispatch={dispatch}
-          config={{ title: 'Android:', currentPath: `${config.currentPath}.android` }}
+          config={{ title: 'Android:', currentPath: `${config.currentPath}.Android` }}
         />
       </NestableControl>
-      <NestableControl state={state} dispatch={dispatch} currentPath={`${config.currentPath}.ios`}>
+      <NestableControl state={state} dispatch={dispatch} currentPath={`${config.currentPath}.iOS`}>
         <SliderControl
           state={state}
           dispatch={dispatch}
-          config={{ title: 'IOS:', currentPath: `${config.currentPath}.ios` }}
+          config={{ title: 'IOS:', currentPath: `${config.currentPath}.iOS` }}
         />
       </NestableControl>
       <SliderControl
@@ -646,7 +646,7 @@ function SetupTools({ state, dispatch, cascadePath, onClick }) {
       <button
         className="btn btn-light"
         type="button"
-        onClick={() => addCascade(cascadePath, 'user_os', { android: 1, ios: 1, default: 1 })}
+        onClick={() => addCascade(cascadePath, 'user_os', { Android: 1, iOS: 1, default: 1 })}
       >
         + Impression Device OS
       </button>
