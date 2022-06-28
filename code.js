@@ -699,7 +699,7 @@ function GraphAPISubmit({ state, dispatch }) {
       type: 'POST',
       data: {
         access_token: state.accessToken,
-        bid_adjustments: { user_group: toPayloadJSON(state.settings) },
+        bid_adjustments: { user_groups: toPayloadJSON(state.settings) },
       },
       success: (res) => {
         console.log(res);
@@ -724,7 +724,7 @@ function GraphAPISubmit({ state, dispatch }) {
           <code>
             <pre>destination API endpoint: {'https://graph.facebook.com/v13.0/' + state.adSetId}</pre>
             <pre>access_token={state.accessToken}</pre>
-            <pre>bid_adjustments={JSON.stringify({ user_group: toPayloadJSON(state.settings) }, null, 2)}</pre>
+            <pre>bid_adjustments={JSON.stringify({ user_groups: toPayloadJSON(state.settings) }, null, 2)}</pre>
           </code>
           <button type="button" id="submit-button" className="btn btn-primary" onClick={callGraphAPI}>
             Submit
