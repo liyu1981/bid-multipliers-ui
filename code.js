@@ -118,13 +118,13 @@ function SetupUI({ state, dispatch, currentPath }) {
           />
         );
         break;
-      case 'user_locations':
+      case 'home_locations':
         children.push(
           <CountryControl
             key={key}
             state={state}
             dispatch={dispatch}
-            config={{ title: 'User Locations', currentPath: `${currentPath}.user_locations.countries` }}
+            config={{ title: 'User Locations', currentPath: `${currentPath}.home_locations.countries` }}
           />
         );
         break;
@@ -663,7 +663,7 @@ function SetupTools({ state, dispatch, cascadePath, onClick }) {
       <button
         className="btn btn-light"
         type="button"
-        onClick={() => addCascade(cascadePath, 'user_locations', { countries: { AU: 1 } })}
+        onClick={() => addCascade(cascadePath, 'home_locations', { countries: { AU: 1 } })}
       >
         + Country
       </button>
